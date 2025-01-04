@@ -1,0 +1,92 @@
+main {
+  position: relative;
+}
+
+.content {
+  width: 300px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  margin: 30px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.content h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.content .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.content .actions button {
+  padding: 7px;
+  color: white;
+  font-weight: medium;
+  border: none;
+  border-radius: 4px;
+}
+
+.content .actions button:hover {
+  cursor: pointer;
+}
+
+.content .actions button.info {
+  background-color: #3498db;
+}
+
+.content .actions button.success {
+  background-color: #2ecc71;
+}
+
+.content .actions button.warning {
+  background-color: #f1c40f;
+}
+
+.content .actions button.error {
+  background-color: #e74c3c;
+}
+
+.not-msg-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px;
+  position: absolute;
+  width: 300px;
+  /* background-color: beige;
+  border: 2px solid black;
+  border-radius: 20px;
+  min-height: 30vh; */
+  right: 10px;
+  top: 10px;
+  overflow: hidden;
+}
+.not-msg-el {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: beige;
+  transition-duration: 0.5s;
+}
+.not-msg-el-timer {
+  height: 8px;
+}
+
+.not-msg-el-timer-child {
+  height: 8px;
+  background-color: red;
+}
+
+.not-msg-el-out {
+  transform: translateX(1000vw);
+  transition-duration: 2s;
+}
+
+.not-msg-el-in {
+  transform: translateX(0px);
+}
