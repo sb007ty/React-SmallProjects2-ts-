@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { NotificationMsgContext } from "./notificationMsgContext";
+import { NotificationMsgContext } from "./NotificationMsgContextProvider";
 
 const NotificationMsgElement: React.FC = ({ type, message, id }) => {
   let bgColor = "";

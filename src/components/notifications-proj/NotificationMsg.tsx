@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { NotificationMsgContext } from "./notificationMsgContext";
+import { NotificationMsgContext } from "./NotificationMsgContextProvider";
 import NotificationMsgElement from "./NotificationMsgElement";
 
 const NotificationMsg: React.FC = () => {

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import "./notifications.css";
 import { NotificationDetails } from "./notificationTypes";
-import { NotificationMsgContext } from "./notificationMsgContext";
+import { NotificationMsgContext } from "./NotificationMsgContextProvider";
 const Notifications: React.FC = () => {
   const { showNotification } = useNotifications();
 

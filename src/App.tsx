@@ -5,17 +5,15 @@ import "./App.css";
 import Notifications from "./components/notifications-proj/Notifications";
 import NotificationMsg from "./components/notifications-proj/NotificationMsg";
 import { NotificationMsgContext } from "./components/notifications-proj/notificationMsgContext";
+import NotificationMsgContextProvider from "./components/notifications-proj/NotificationMsgContextProvider";
 
 function App() {
-  const [notificationMsg, setNotificationMsg] = useState([]);
   return (
     <div className="app">
-      <NotificationMsgContext.Provider
-        value={{ notificationMsg, setNotificationMsg }}
-      >
+      <NotificationMsgContextProvider>
         <Notifications />
         <NotificationMsg />
-      </NotificationMsgContext.Provider>
+      </NotificationMsgContextProvider>
     </div>
   );
 }
