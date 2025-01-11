@@ -1,8 +1,10 @@
-import { Children, createContext, useState } from "react";
+import { createContext, useState } from "react";
 
 export const NotificationMsgContext = createContext(null);
 
-const NotificationMsgContextProvider: React.FC = ({ children }) => {
+const NotificationMsgContextProvider: React.FC<{
+  children: JSX.Element | JSX.Element[];
+}> = ({ children }) => {
   const [notificationMsg, setNotificationMsg] = useState([]);
   console.log("hello");
   return (
