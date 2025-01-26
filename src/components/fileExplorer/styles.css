@@ -1,0 +1,9 @@
+.file-explorer {
+  padding: 50px;
+}
+.curr-dir {
+  display: flex;
+}
+.hide {
+  display: none;
+}
