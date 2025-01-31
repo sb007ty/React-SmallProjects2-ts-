@@ -3,7 +3,7 @@ import data from "./data";
 import Directory from "./Directory";
 import FileOnly from "./FileOnly";
 import "./styles.css";
-function FileExplorer() {
+const FileExplorer: React.FC = () => {
   const [localData, setLocalDate] = useState(data);
   function updateData(newDataName, dataId, type) {
     console.log(newDataName, dataId, " newo**");
@@ -70,6 +70,6 @@ function FileExplorer() {
       })}
     </div>
   );
-}
+};
 
 export default FileExplorer;

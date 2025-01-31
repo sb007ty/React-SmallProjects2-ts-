@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import users from "./users";
 import "./styles.css";
+import { User } from "./userDb.type";
 
 function UserDb() {
   const [search, setSearch] = useState("");
@@ -40,14 +41,15 @@ function UserDb() {
             // multiple
             value={selectedUserId}
             size={5}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
               const selUser = e.target.value;
               setSelectedUserId(selUser);
-              const { firstName, lastName } = userData.find(
-                (item) => item.id === selUser
-              );
-              setFirstName(firstName);
-              setLastName(lastName);
+              const user = userData.find((item) => item.id === selUser);
+              if (user) {
+                const { firstName, lastName } = user;
+                setFirstName(firstName);
+                setLastName(lastName);
+              }
             }}
           >
             <>
@@ -80,7 +82,7 @@ function UserDb() {
             name="lastname"
             id=""
             value={lastName}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setLastName(e.target.value);
             }}
           />
@@ -89,7 +91,7 @@ function UserDb() {
       <div className="btns">
         <button
           disabled={selectedUserId !== ""}
-          onClick={(e) => {
+          onClick={() => {
             const newUsers = [
               ...initialUsers,
               { id: crypto.randomUUID(), firstName, lastName },
@@ -102,7 +104,7 @@ function UserDb() {
         </button>
         <button
           disabled={selectedUserId === ""}
-          onClick={(e) => {
+          onClick={() => {
             const newUsers = initialUsers.map((item) => {
               if (item.id === selectedUserId)
                 return {
@@ -120,7 +122,7 @@ function UserDb() {
         </button>
         <button
           disabled={selectedUserId === ""}
-          onClick={(e) => {
+          onClick={() => {
             const newUsers = initialUsers.filter((item) => {
               if (item.id === selectedUserId) return false;
               return true;
@@ -134,7 +136,7 @@ function UserDb() {
         </button>
         <button
           disabled={selectedUserId === ""}
-          onClick={(e) => {
+          onClick={() => {
             setSelectedUserId("");
             setFirstName("");
             setLastName("");
