@@ -1,4 +1,6 @@
-const data = [
+import { DirectoryType, FileElType } from "./file.type";
+
+const data: (DirectoryType | FileElType)[] = [
   {
     id: 1,
     name: "README.md",
@@ -6,7 +8,7 @@ const data = [
   {
     id: 2,
     name: "Documents",
-    children: [
+    childrenArr: [
       {
         id: 3,
         name: "Word.doc",
@@ -20,7 +22,7 @@ const data = [
   {
     id: 5,
     name: "Downloads",
-    children: [
+    childrenArr: [
       {
         id: 6,
         name: "unnamed.txt",
@@ -28,7 +30,7 @@ const data = [
       {
         id: 7,
         name: "Misc",
-        children: [
+        childrenArr: [
           {
             id: 8,
             name: "foo.txt",

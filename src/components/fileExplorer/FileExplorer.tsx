@@ -1,18 +1,19 @@
+/* eslint-disable no-prototype-builtins */
 import { useState } from "react";
 import data from "./data";
-import Directory from "./Directory";
 import FileOnly from "./FileOnly";
 import "./styles.css";
+import { DirectoryType, FileElType } from "./file.type";
 const FileExplorer: React.FC = () => {
   const [localData, setLocalDate] = useState(data);
-  function updateData(newDataName, dataId, type) {
+  function updateData(newDataName: string, dataId: number, type: string) {
     console.log(newDataName, dataId, " newo**");
     const newData = structuredClone(localData);
     let dataToEdit;
     function findDataToEdit(el) {
-      if (!el.children) return;
+      if (!el.childrenArr) return;
       if (el.id === dataId) return el;
-      for (let i of el.children) {
+      for (let i of el.childrenArr) {
         const ans = findDataToEdit(i);
         if (ans) return ans;
       }
@@ -32,26 +33,27 @@ const FileExplorer: React.FC = () => {
       id: crypto.randomUUID(),
     };
     if (type === "dir") {
-      dataToEdit?.children.push({
+      dataToEdit?.childrenArr.push({
         ...newDataObj,
-        children: [],
+        childrenArr: [],
       });
     } else if (type === "file") {
-      dataToEdit?.children.push(newDataObj);
+      dataToEdit?.childrenArr.push(newDataObj);
     }
     setLocalDate(newData);
     console.log(newData, " newData*");
   }
   const sortedDirectory = localData
     .filter((item) => {
-      return Object.hasOwn(item, "children");
+      // eslint-disable-next-line no-prototype-builtins
+      return item.hasOwnProperty("childrenArr");
     })
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .sort((a, b) => a.name.localeCompare(b.name)) as DirectoryType[];
   const sortedFiles = localData
     .filter((item) => {
-      return !Object.hasOwn(item, "children");
+      return !item.hasOwnProperty("childrenArr");
     })
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .sort((a, b) => a.name.localeCompare(b.name)) as FileElType[];
   return (
     <div className="file-explorer">
       {sortedDirectory.map((item) => {

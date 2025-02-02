@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
 interface FileOnlyProps {
-  id: string;
+  id?: number;
   name: string;
   hideEl: boolean;
   gap: number;
 }
 const FileOnly: React.FC<FileOnlyProps> = ({ id, name, hideEl, gap }) => {
-  const a = useRef<{ a: string; b: number } | null>();
+  // const a = useRef<{ a: string; b: number } | null>();
 
   // a.current.
   if (hideEl) return null;

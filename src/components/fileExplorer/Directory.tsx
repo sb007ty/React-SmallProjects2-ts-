@@ -1,24 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import FileOnly from "./FileOnly";
-import data from "./data";
-
-function Directory({ id, name, children, hideEl, gap, updateData }) {
+import { DirectoryType, FileElType } from "./file.type";
+interface DirectoryProps {
+  id: number;
+  name: string;
+  hideEl: boolean;
+  gap: number;
+  childrenArr: (DirectoryType | FileElType)[];
+  updateData: (a: string, b: number, c: string) => void;
+}
+const Directory: React.FC<DirectoryProps> = ({
+  id,
+  name,
+  childrenArr,
+  hideEl,
+  gap,
+  updateData,
+}) => {
   console.log(name, hideEl);
-  useEffect(() => {
-    console.log("fist render", id);
-  }, []);
+
   const [newDataValue, setNewDataValue] = useState("");
   const [showAdd, setShowAdd] = useState(false);
-  const sortedDirectory = children
+  const sortedDirectory = childrenArr
     .filter((item) => {
-      return Object.hasOwn(item, "children");
+      return Object.hasOwn(item, "childrenArr");
     })
-    .sort((a, b) => a.name.localeCompare(b.name));
-  const sortedFiles = children
+    .sort((a, b) => a.name.localeCompare(b.name)) as DirectoryType[];
+  const sortedFiles = childrenArr
     .filter((item) => {
-      return !Object.hasOwn(item, "children");
+      return !Object.hasOwn(item, "childrenArr");
     })
-    .sort((a, b) => a.name.localeCompare(b.name));
+    .sort((a, b) => a.name.localeCompare(b.name)) as FileElType[];
 
   const [hidden, setHidden] = useState(true);
   const value = hidden ? "+" : "-";
@@ -27,10 +39,10 @@ function Directory({ id, name, children, hideEl, gap, updateData }) {
     <div className={`directory`}>
       <div className="curr-dir" style={{ paddingLeft: `${gap}0px` }}>
         <div>{name}</div>
-        {children.length > 0 && (
+        {childrenArr.length > 0 && (
           <button
             className="dir-btn"
-            onClick={(e) => {
+            onClick={() => {
               setHidden(!hidden);
             }}
           >{`[${value}]`}</button>
@@ -95,6 +107,6 @@ function Directory({ id, name, children, hideEl, gap, updateData }) {
       })}
     </div>
   );
-}
+};
 
 export default Directory;

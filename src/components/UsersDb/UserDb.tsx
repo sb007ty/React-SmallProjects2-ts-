@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import users from "./users";
 import "./styles.css";
 import { User } from "./userDb.type";
 
 function UserDb() {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState<boolean>(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [initialUsers, setInitialUsers] = useState(users);
   const [userData, setUserData] = useState(users);
   const [selectedUserId, setSelectedUserId] = useState("");
+
+  const ref = useRef<string>("abc");
+  console.log(ref.current);
+
   return (
     <div className="user-db">
       <div className="search">
